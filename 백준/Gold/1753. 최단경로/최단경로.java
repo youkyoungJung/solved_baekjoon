@@ -35,10 +35,8 @@ public class Main {
 		PriorityQueue<Node> queue = new PriorityQueue<>();
 		int[] distance = new int[V+1];
 		Arrays.fill(distance, Integer.MAX_VALUE);
-		boolean[] visited = new boolean[V+1];
 		queue.offer(new Node(K, 0));
 		distance[K] = 0;
-		visited[K] = true;
 		
 		while(!queue.isEmpty()) {
 			Node now = queue.poll();
