@@ -48,7 +48,12 @@ class Solution {
                 answer.add(musics.get(1).idx);
             }
         }
+        int[] res = new int[answer.size()];
         
-        return answer.stream().mapToInt(m->m).toArray();
+        for(int i = 0; i < answer.size(); i++){
+            res[i] = answer.get(i);
+        }
+        return res;
+        // return answer.stream().mapToInt(m->m).toArray();
     }
 }
