@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
@@ -9,32 +10,44 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
-        Map<Integer, Integer> tree = new HashMap<>();
-        Map<Integer, Integer> speed = new HashMap<>();
-
+        ArrayList<Pair> pairs = new ArrayList<>(N);
+        for (int i = 0; i < N; i++) {
+            pairs.add(new Pair(0, 0));
+        }
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int i = 0; i < N; i++){
-            tree.put(i, Integer.parseInt(st.nextToken()));
+        for (int i = 0; i < N; i++) {
+            pairs.get(i).tree = Integer.parseInt(st.nextToken());
         }
         st = new StringTokenizer(br.readLine());
-        for(int i = 0; i < N; i++){
-            speed.put(i, Integer.parseInt(st.nextToken()));
+        for (int i = 0; i < N; i++) {
+            pairs.get(i).speed = Integer.parseInt(st.nextToken());
         }
 
-        List<Integer> keySet = new ArrayList<>(speed.keySet());
-        keySet.sort((o1, o2)-> Integer.compare(speed.get(o1), speed.get(o2)));
+        Queue<Pair> queue = new PriorityQueue<>((o1, o2) -> Integer.compare(o1.speed, o2.speed));
+        for (int i = 0; i < N; i++) {
+            queue.add(pairs.get(i));
+        }
 
-        long answer = 0;
         int index = 0;
-        while(N-- > 0){
-            int targetIndex = keySet.get(0);
-            answer += ((long) tree.get(targetIndex) + ((long) speed.get(targetIndex) * index));
-
-            keySet.remove(0);
+        long answer = 0;
+        while(!queue.isEmpty()) {
+            Pair pair = queue.poll();
+            answer += ((long) pair.tree + ((long) pair.speed * index));
             index++;
         }
-
         System.out.println(answer);
+
     }// end of main
+
+    public static class Pair {
+        int tree;
+        int speed;
+
+        public Pair(int tree, int speed) {
+            this.tree = tree;
+            this.speed = speed;
+        }
+
+    }
 
 }//end of class
