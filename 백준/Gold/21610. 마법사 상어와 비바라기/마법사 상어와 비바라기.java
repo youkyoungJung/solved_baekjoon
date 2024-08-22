@@ -55,11 +55,13 @@ public class Main {
     }// end of main
 
     public static void simulation(int d, int s) {
-        // 초기화
+        //ㅊ
         isPast = new boolean[N+1][N+1];
         //1. 이동 하기
         move(d, s);
+//        System.out.println(clouds);
         //2. 구름 영역 비 내리기
+        //2. 초기화
         //3. 대각선 중 물 있는 칸 수 만큼 증량
         waterAdd();
         //4. 구름 삭제
@@ -109,8 +111,8 @@ public class Main {
         for(int i = 0; i < clouds.size(); i++) {
             Cloud current = clouds.get(i);
 
-            int nr = (N + current.r + dist[d][0] * (s%N)) % N;
-            int nc = (N + current.c + dist[d][1] * (s%N)) % N;
+            int nr = (current.r + ((dist[d][0] + N) * s)) % N;
+            int nc = (current.c + ((dist[d][1] + N) * s)) % N;
 
             clouds.get(i).r = nr;
             clouds.get(i).c = nc;
