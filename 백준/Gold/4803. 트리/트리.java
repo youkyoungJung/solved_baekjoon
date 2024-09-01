@@ -66,6 +66,7 @@ public class Main {
                 dfs(adj, node);
             } else if (adj != parent) {
                 hasCycle = true;
+                return;
             }
         }
     }
