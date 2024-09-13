@@ -28,12 +28,12 @@ public class Main {
             }
         }
 
-        int answer = 0;
-        for(int i = 1; i <= M; i++){
-            answer = Math.max(answer, dp[N][i]);
-        }
+//        int answer = 0;
+//        for(int i = 1; i <= M; i++){
+//            answer = Math.max(answer, dp[N][i]);
+//        }
 
-        System.out.println(answer);
+        System.out.println(dp[N][M]);
 
     }   // end of main
 
