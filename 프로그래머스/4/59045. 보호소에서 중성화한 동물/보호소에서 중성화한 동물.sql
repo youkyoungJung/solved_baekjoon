@@ -1,0 +1,18 @@
+-- 보호소에서 중성화 수술을 거친 동물 정보
+-- 보호소 들어올 당시에는 중성화 x
+-- 보호소 나갈때는 중성화 된 아이들
+-- 아이디, 생물종, 이름
+
+WITH INS AS (
+    SELECT ANIMAL_ID, ANIMAL_TYPE, NAME
+    FROM ANIMAL_INS
+    WHERE SEX_UPON_INTAKE LIKE "Intact %"
+), OUTS AS (
+    SELECT ANIMAL_ID, ANIMAL_TYPE, NAME
+    FROM ANIMAL_OUTS
+    WHERE SEX_UPON_OUTCOME LIKE "Spayed %" or
+    SEX_UPON_OUTCOME LIKE "Neutered %"
+)
+
+SELECT O.ANIMAL_ID, O.ANIMAL_TYPE, O.NAME
+FROM INS I JOIN OUTS O USING(ANIMAL_ID)
