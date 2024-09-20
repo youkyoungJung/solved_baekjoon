@@ -1,0 +1,7 @@
+-- 상품 카테고리 코드 앞자리 2자리, 별 상품 개수 출력
+-- 상품 카테고리 코드를 기준으로 오름차순
+
+SELECT SUBSTRING(PRODUCT_CODE, 1, 2)AS CATEGORY, COUNT(*) AS PRODUCTS
+FROM PRODUCT
+GROUP BY CATEGORY
+ORDER BY CATEGORY
