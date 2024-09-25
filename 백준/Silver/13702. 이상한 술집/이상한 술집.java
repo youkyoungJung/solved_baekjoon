@@ -25,24 +25,27 @@ public class Main {
     } //end of main
 
     public static long binarySearch() {
-        long left = 1; // 용량 최솟값
-        long right = arr[arr.length - 1]; //용량 최댓값
+        long left = 0; // 용량 최솟값
+        long right = arr[arr.length - 1]+1; //용량 최댓값
 
-        while(left <= right) {
+        while(left + 1 < right) {
             long mid = (left + right) / 2;
 
             if(checked(mid)){
-                left = mid + 1;
+                left = mid;
             }else{
-                right = mid - 1;
+                right = mid;
             }
         }
-        return right;
+        return left;
     }
 
     public static boolean checked(long mid){
         int answer = 0;
-        if(mid == 0) return false;
+        if(mid == 0) {
+            if(k == 0) return true;
+            else return false;
+        }
         for(int i = 0; i < n; i++){
             answer += (int)arr[i] / mid;
             if(answer >= k){
